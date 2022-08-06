@@ -59,4 +59,10 @@ public class HotelServiceImpl implements IHotelService {
         
         return this.hoteRepo.buscarHotelLeftOuterJoin();
     }
+
+    @Override
+    public List<Hotel> buscarHotelWhereJoin(String tipo) {
+        // TODO Auto-generated method stub
+        return this.hoteRepo.buscarHotelWhereJoin(tipo);
+    }
 }

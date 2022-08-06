@@ -29,7 +29,11 @@ public class HotelRepoImpl implements IHotelRepo {
         TypedQuery<Hotel> mQuery = this.e
                 .createQuery("SELECT h FROM Hotel h JOIN h.habitaciones ha WHERE ha.tipo = :habi", Hotel.class)
                 .setParameter("habi", habitacion);
-        return mQuery.getResultList();
+        List<Hotel> lista =  mQuery.getResultList();
+        for (Hotel hotel : lista) {
+            hotel.getHabitaciones().size();
+        }
+        return lista;
     }
 
     @Override
@@ -56,13 +60,7 @@ public class HotelRepoImpl implements IHotelRepo {
         return mQuery.getResultList();
     }
 
-    @Override
-    public List<Hotel> buscarHotelFetchJoin(String habitacion) {
-        TypedQuery<Hotel> mQuery = this.e
-                .createQuery("SELECT h FROM Hotel h JOIN h.habitaciones ha WHERE ha.tipo = :habi", Hotel.class)
-                .setParameter("habi", habitacion);
-        return mQuery.getResultList();
-    }
+    
 
     @Override
     public List<Hotel> buscarHotelInnerJoin() {
@@ -77,8 +75,25 @@ public class HotelRepoImpl implements IHotelRepo {
     public List<Hotel> buscarHotelLeftOuterJoin() {
         TypedQuery<Hotel> mQuery = this.e
                 .createQuery("SELECT h FROM Hotel h LEFT JOIN h.habitaciones ha", Hotel.class);
-                
+
         return mQuery.getResultList();
-        
+
+    }
+
+    // Hace lo mismo que un inner join
+    @Override
+    public List<Hotel> buscarHotelWhereJoin(String habitacion) {
+        TypedQuery<Hotel> mQuery = this.e
+                .createQuery("SELECT h FROM Hotel h, Habitacion ha  WHERE h.id = ha.hotel AND ha.tipo = :habi", Hotel.class)
+                .setParameter("habi", habitacion);
+        return mQuery.getResultList();
+    }
+
+    @Override
+    public List<Hotel> buscarHotelFetchJoin(String habitacion) {
+        TypedQuery<Hotel> mQuery = this.e
+                .createQuery("SELECT h FROM Hotel h JOIN FETCH h.habitaciones ha WHERE ha.tipo = :habi", Hotel.class)
+                .setParameter("habi", habitacion);
+        return mQuery.getResultList();
     }
 }

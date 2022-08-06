@@ -30,7 +30,7 @@ public class Habitacion {
     @Column(name = "habi_tipo")
     private String tipo;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne()
     @JoinColumn(name = "habi_hotel_id")
     private Hotel hotel;
 

@@ -29,7 +29,7 @@ public class Hotel {
     @Column(name = "hote_direccion")
     private String direccion;
 
-    @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL)
     private List<Habitacion> habitaciones;
 
     // Get y Set
