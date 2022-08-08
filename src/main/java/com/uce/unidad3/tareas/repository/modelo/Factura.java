@@ -29,7 +29,7 @@ public class Factura {
     @Column(name = "fact_fecha")
     private LocalDateTime fecha;
 
-    @OneToMany(mappedBy = "factura",fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "factura")
     private List<Detalle> detalles;
 
     // Get y Set

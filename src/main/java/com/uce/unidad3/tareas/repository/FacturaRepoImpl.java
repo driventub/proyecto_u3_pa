@@ -92,7 +92,7 @@ public class FacturaRepoImpl implements IFacturaRepo {
 	@Override
 	public List<Factura> buscarFacturaFetchJoin(LocalDateTime fecha) {
 		TypedQuery<Factura> mQuery = this.e
-				.createQuery("SELECT f FROM Factura f JOIN f.detalles d WHERE f.fecha <= :fecha", Factura.class)
+				.createQuery("SELECT f FROM Factura f JOIN FETCH f.detalles d WHERE f.fecha <= :fecha", Factura.class)
 				.setParameter("fecha", fecha);
 		return mQuery.getResultList();
 	}
@@ -113,5 +113,16 @@ public class FacturaRepoImpl implements IFacturaRepo {
 
 		return mQuery.getResultList();
 
+	}
+
+	@Override
+	public List<Factura> buscarFacturaWhereJoin(LocalDateTime fecha) {
+
+		TypedQuery<Factura> mQuery = this.e
+				.createQuery("SELECT f FROM Factura f , Detalle d WHERE f.id = d.factura AND f.fecha <= :fecha",
+						Factura.class)
+				.setParameter("fecha", fecha);
+
+		return mQuery.getResultList();
 	}
 }

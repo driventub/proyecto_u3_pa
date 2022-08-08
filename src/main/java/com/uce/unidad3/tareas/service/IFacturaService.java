@@ -29,4 +29,6 @@ public interface IFacturaService {
 	public List<Factura> buscarFacturaRightOuterJoin(LocalDateTime fecha);
 
 	public List<Factura> buscarFacturaFetchJoin(LocalDateTime fecha);
+
+    public List<Factura> buscarFacturaWhereJoin(LocalDateTime fecha) ;
 }

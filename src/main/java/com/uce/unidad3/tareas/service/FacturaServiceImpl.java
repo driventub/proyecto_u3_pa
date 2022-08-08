@@ -92,4 +92,10 @@ public class FacturaServiceImpl implements IFacturaService {
         
         return this.factRepo.buscarFacturaLeftOuterJoin();
     }
+
+    @Override
+    public List<Factura> buscarFacturaWhereJoin(LocalDateTime fecha) {
+        // TODO Auto-generated method stub
+        return this.factRepo.buscarFacturaWhereJoin(fecha);
+    }
 }
