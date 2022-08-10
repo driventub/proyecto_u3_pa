@@ -1,7 +1,6 @@
 package com.uce.unidad3;
 
-import java.time.LocalDateTime;
-import java.util.List;
+import java.math.BigDecimal;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -10,9 +9,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.uce.unidad3.tareas.repository.modelo.Detalle;
-import com.uce.unidad3.tareas.repository.modelo.Factura;
-import com.uce.unidad3.tareas.service.IFacturaService;
+import com.uce.unidad3.service.ITransferenciaService;
 
 @SpringBootApplication
 public class Unidad3Application implements CommandLineRunner{
@@ -21,7 +18,7 @@ public class Unidad3Application implements CommandLineRunner{
 
 	
 	@Autowired
-	private IFacturaService facturaService;
+	private ITransferenciaService transferenciaService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(Unidad3Application.class, args);
@@ -29,22 +26,8 @@ public class Unidad3Application implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-		LOG.info("Inner");
-		List<Factura> listaW = this.facturaService.buscarFacturaWhereJoin(LocalDateTime.of(2022,10,10,01,01));
-
-		for (Factura fact : listaW) {
-			LOG.info("Factura: "  + "Numero: " + fact.getNumero());
-		}
-
-		List<Factura> listaF = this.facturaService.buscarFacturaFetchJoin(LocalDateTime.of(2022,10,10,01,01));
-
-		for (Factura fact : listaF) {
-			LOG.info("Factura: "  + "Numero: " + fact.getNumero());
-			for (Detalle detalle : fact.getDetalles()) {
-				LOG.info("Producto: " + detalle.getNombre());
-			}
-		}
-
-		
+		this.transferenciaService.realizarTransferenciaFachada("22342", "83828", new BigDecimal("1"));
+	
 	}
+
 }

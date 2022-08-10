@@ -6,10 +6,12 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
+import javax.transaction.Transactional.TxType;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.support.TransactionSynchronizationManager;
 
 import com.uce.unidad3.repository.modelo.Hotel;
 
@@ -17,7 +19,7 @@ import com.uce.unidad3.repository.modelo.Hotel;
 @Transactional
 public class HotelRepoImpl implements IHotelRepo {
 
-    private static Logger logger = LogManager.getLogger(HotelRepoImpl.class);
+    private static Logger LOG = LogManager.getLogger(HotelRepoImpl.class);
 
     @PersistenceContext
     private EntityManager e;
@@ -90,7 +92,9 @@ public class HotelRepoImpl implements IHotelRepo {
     }
 
     @Override
+    @Transactional(value = TxType.MANDATORY)
     public List<Hotel> buscarHotelFetchJoin(String habitacion) {
+        LOG.info("Transaccion Activa" + TransactionSynchronizationManager.isActualTransactionActive());
         TypedQuery<Hotel> mQuery = this.e
                 .createQuery("SELECT h FROM Hotel h JOIN FETCH h.habitaciones ha WHERE ha.tipo = :habi", Hotel.class)
                 .setParameter("habi", habitacion);

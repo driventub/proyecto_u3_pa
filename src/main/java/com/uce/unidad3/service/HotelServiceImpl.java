@@ -6,6 +6,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.support.TransactionSynchronizationManager;
 
 import com.uce.unidad3.repository.IHotelRepo;
 import com.uce.unidad3.repository.modelo.Hotel;
@@ -13,7 +14,7 @@ import com.uce.unidad3.repository.modelo.Hotel;
 @Service
 public class HotelServiceImpl implements IHotelService {
 
-    private static Logger logger = LogManager.getLogger(HotelServiceImpl.class);
+    private static Logger LOG = LogManager.getLogger(HotelServiceImpl.class);
 
     @Autowired
     private IHotelRepo hoteRepo;
@@ -44,7 +45,7 @@ public class HotelServiceImpl implements IHotelService {
 
     @Override
     public List<Hotel> buscarHotelFetchJoin(String habitacion) {
-
+        LOG.info("Transaccion Activa" + TransactionSynchronizationManager.isActualTransactionActive());
         return this.hoteRepo.buscarHotelFetchJoin(habitacion);
     }
 
