@@ -61,5 +61,12 @@ public class TransferenciaServiceImpl implements ITransferenciaService {
         
     }
 
+
+    @Override
+    public Transferencia buscar(Integer id) {
+        // TODO Auto-generated method stub
+        return this.tranRepo.buscar(id);
+    }
+
 }
 

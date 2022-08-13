@@ -20,14 +20,22 @@ public class Unidad3Application implements CommandLineRunner{
 	@Autowired
 	private ITransferenciaService transferenciaService;
 
+
+	// @Autowired
+	// private IHotelService hotelService;
+
+	
 	public static void main(String[] args) {
 		SpringApplication.run(Unidad3Application.class, args);
 	}
 
 	@Override
 	public void run(String... args) throws Exception {
-		this.transferenciaService.realizarTransferenciaFachada("22342", "83828", new BigDecimal("1"));
+		// this.transferenciaService.realizarTransferenciaFachada("22342", "83828", new BigDecimal("12.00"));
 	
+	
+		
+
 	}
 
 }

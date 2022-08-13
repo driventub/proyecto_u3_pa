@@ -31,7 +31,7 @@ public class HotelRepoImpl implements IHotelRepo {
         TypedQuery<Hotel> mQuery = this.e
                 .createQuery("SELECT h FROM Hotel h JOIN h.habitaciones ha WHERE ha.tipo = :habi", Hotel.class)
                 .setParameter("habi", habitacion);
-        List<Hotel> lista =  mQuery.getResultList();
+        List<Hotel> lista = mQuery.getResultList();
         for (Hotel hotel : lista) {
             hotel.getHabitaciones().size();
         }
@@ -62,8 +62,6 @@ public class HotelRepoImpl implements IHotelRepo {
         return mQuery.getResultList();
     }
 
-    
-
     @Override
     public List<Hotel> buscarHotelInnerJoin() {
         TypedQuery<Hotel> mQuery = this.e
@@ -86,7 +84,8 @@ public class HotelRepoImpl implements IHotelRepo {
     @Override
     public List<Hotel> buscarHotelWhereJoin(String habitacion) {
         TypedQuery<Hotel> mQuery = this.e
-                .createQuery("SELECT h FROM Hotel h, Habitacion ha  WHERE h.id = ha.hotel AND ha.tipo = :habi", Hotel.class)
+                .createQuery("SELECT h FROM Hotel h, Habitacion ha  WHERE h.id = ha.hotel AND ha.tipo = :habi",
+                        Hotel.class)
                 .setParameter("habi", habitacion);
         return mQuery.getResultList();
     }
@@ -99,5 +98,40 @@ public class HotelRepoImpl implements IHotelRepo {
                 .createQuery("SELECT h FROM Hotel h JOIN FETCH h.habitaciones ha WHERE ha.tipo = :habi", Hotel.class)
                 .setParameter("habi", habitacion);
         return mQuery.getResultList();
+
+    }
+
+    @Override
+    public Hotel buscar(Integer id) {
+        return this.e.find(Hotel.class, id);
+    }
+
+    @Override
+    public List<Hotel> buscarTodos() {
+        TypedQuery<Hotel> myTypedQuery = (TypedQuery<Hotel>) this.e
+                .createQuery("SELECT f FROM Hotel f    ", Hotel.class);
+        return myTypedQuery.getResultList();
+
+    }
+
+    @Override
+    public Hotel actualizar(Hotel hote) {
+        this.e.merge(hote);
+        return hote;
+
+    }
+
+    @Override
+    public void eliminar(Integer id) {
+        Hotel gBorrar = this.buscar(id);
+        this.e.remove(gBorrar);
+
+    }
+
+    @Override
+    public Hotel insertar(Hotel hote) {
+         this.e.persist(hote);
+         return hote;
+
     }
 }

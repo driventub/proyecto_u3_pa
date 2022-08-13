@@ -66,4 +66,36 @@ public class HotelServiceImpl implements IHotelService {
         // TODO Auto-generated method stub
         return this.hoteRepo.buscarHotelWhereJoin(tipo);
     }
+
+    
+	@Override
+	public Hotel buscar(Integer id) {
+		
+		return this.hoteRepo.buscar(id);
+	}
+
+	@Override
+	public List<Hotel> buscarTodos() {
+		
+		return this.hoteRepo.buscarTodos();
+	}
+
+	@Override
+	public Hotel actualizar(Hotel hote) {
+		return this.hoteRepo.actualizar(hote);
+		
+	}
+
+	@Override
+	public void eliminar(Integer id) {
+		this.hoteRepo.eliminar(id);
+		
+	}
+
+	@Override
+	public Hotel insertar(Hotel hote) {
+		return this.hoteRepo.insertar(hote);
+		
+	}
+
 }

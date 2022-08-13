@@ -27,4 +27,10 @@ public class TransferenciaRepoImpl implements ITransferenciaRepo {
 
     }
 
+    @Override
+    public Transferencia buscar(Integer id) {
+        // TODO Auto-generated method stub
+        return this.e.find(Transferencia.class, id);
+    }
+
 }

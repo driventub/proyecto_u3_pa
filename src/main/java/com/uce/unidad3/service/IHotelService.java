@@ -20,4 +20,15 @@ public interface IHotelService {
     public List<Hotel> buscarHotelFetchJoin(String habitacion);
 
     public List<Hotel> buscarHotelWhereJoin(String habitacion);
+
+    public Hotel buscar(Integer id);
+
+    public List<Hotel> buscarTodos();
+
+    public void eliminar(Integer id);
+
+    public Hotel insertar(Hotel hotel);
+
+    public Hotel actualizar(Hotel hotel);
+
 }

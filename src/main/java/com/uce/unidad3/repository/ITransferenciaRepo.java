@@ -5,4 +5,6 @@ import com.uce.unidad3.repository.modelo.Transferencia;
 public interface ITransferenciaRepo {
 
     public void insertar(Transferencia tran);
+
+    public Transferencia buscar(Integer id);
 }
