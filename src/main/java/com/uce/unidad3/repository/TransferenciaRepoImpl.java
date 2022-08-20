@@ -24,6 +24,7 @@ public class TransferenciaRepoImpl implements ITransferenciaRepo {
     @Transactional(value = TxType.MANDATORY)
     public void insertar(Transferencia tran) {
         this.e.persist(tran);
+        // throw new RuntimeException();
 
     }
 

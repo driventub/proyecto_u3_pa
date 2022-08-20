@@ -41,6 +41,7 @@ public class TransferenciaServiceImpl implements ITransferenciaService {
         cOrigen.setSaldo(cOrigen.getSaldo().subtract(monto));
         cDestino.setSaldo(cDestino.getSaldo().add(monto));
 
+
         this.cuentaBancariaService.actualizar(cOrigen);
         this.cuentaBancariaService.actualizar(cDestino);
 
@@ -51,6 +52,15 @@ public class TransferenciaServiceImpl implements ITransferenciaService {
         t.setMonto(monto);
 
         this.tranRepo.insertar(t);
+    //    if (ctaOrigen.getTipo.equals("Ahorros")) {
+    //     throw new RuntimeException();
+    //    }
+
+        if(monto.compareTo(cOrigen.getSaldo().subtract(monto))>0){
+            throw new RuntimeException();
+        }
+
+
     }
 
 

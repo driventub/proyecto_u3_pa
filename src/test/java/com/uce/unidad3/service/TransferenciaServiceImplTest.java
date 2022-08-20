@@ -26,7 +26,7 @@ public class TransferenciaServiceImplTest {
     
     @Test
     void testRealizarTransferencia() {
-        // this.transferenciaService.realizarTransferenciaFachada("22342", "83828", new BigDecimal("1"));
+        // this.transferenciaService.realizarTransferenciaFachada("22342", "83828", new BigDecimal("12"));
         Transferencia t = this.transferenciaService.buscar(5);
         BigDecimal ivaEncontrado = t.getMonto().divide(new BigDecimal(12));
         LOG.info(ivaEncontrado);

@@ -37,7 +37,7 @@ class HotelServiceTest {
 	@MockBean
 	private HotelRepoImpl hotelRepoImpl;
 
-	@Autowired()
+	@Autowired
 	private HotelServiceImpl hotelServiceImpl;
 
 	@BeforeAll

@@ -23,10 +23,11 @@ public class CuentaBancariaRepoImpl implements ICuentaBancariaRepo {
 	private EntityManager e;
 
 	@Override
-	@Transactional(value = TxType.MANDATORY)
+	@Transactional(value = TxType.REQUIRES_NEW)
 	public void actualizar(CuentaBancaria cuba) {
 		LOG.info("Transaccion Activa" + TransactionSynchronizationManager.isActualTransactionActive());
 		this.e.merge(cuba);
+		// throw new RuntimeException();
 
 	}
 

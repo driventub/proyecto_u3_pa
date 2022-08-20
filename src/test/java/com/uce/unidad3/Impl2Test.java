@@ -68,13 +68,13 @@ class Impl2Test {
 
     @Test
     @Order(2)
-    public void buscarHotelLeftOuterJoinTest() {//**
+    public void buscarHotelLeftOuterJoinTest() {
         LOG.info("Test buscarHotelLeftOuterJoinTest hotel 2");
         
         Hotel hotel= new Hotel();
         hotel.setNombre("Gran Colon");
         hotel.setDireccion("Patria");
-        hotel.setId(1);
+        
         
         when(this.hotelRepo2.buscarHotelLeftOuterJoin("Familiar")).thenReturn(Arrays.asList(hotel));
         assertNotNull(hotelService.buscarHotelLeftOuterJoin());

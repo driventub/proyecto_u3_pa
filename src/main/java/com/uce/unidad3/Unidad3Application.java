@@ -31,7 +31,7 @@ public class Unidad3Application implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-		// this.transferenciaService.realizarTransferenciaFachada("22342", "83828", new BigDecimal("12.00"));
+		this.transferenciaService.realizarTransferenciaFachada("22342", "83828", new BigDecimal("1.00"));
 	
 	
 		
