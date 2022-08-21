@@ -31,7 +31,7 @@ public class TransferenciaServiceImpl implements ITransferenciaService {
 
 	
     @Override
-    @Transactional(value = TxType.REQUIRES_NEW)
+    @Transactional(value = TxType.REQUIRED)
     public void realizarTransferencia(String ctaOrigen, String ctaDestino, BigDecimal monto) {
 
         
@@ -50,7 +50,7 @@ public class TransferenciaServiceImpl implements ITransferenciaService {
         t.setCtaOrigen(cOrigen);
         t.setFecha(LocalDateTime.now());
         t.setMonto(monto);
-
+        
         this.tranRepo.insertar(t);
     //    if (ctaOrigen.getTipo.equals("Ahorros")) {
     //     throw new RuntimeException();
@@ -60,7 +60,7 @@ public class TransferenciaServiceImpl implements ITransferenciaService {
             throw new RuntimeException();
         }
 
-
+        throw new RuntimeException();
     }
 
 

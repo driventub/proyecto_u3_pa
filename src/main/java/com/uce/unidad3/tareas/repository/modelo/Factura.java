@@ -1,5 +1,6 @@
 package com.uce.unidad3.tareas.repository.modelo;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -9,6 +10,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -29,8 +32,15 @@ public class Factura {
     @Column(name = "fact_fecha")
     private LocalDateTime fecha;
 
-    @OneToMany(mappedBy = "factura", fetch = FetchType.EAGER)
+    @Column(name = "fact_monto")
+    private BigDecimal monto;
+
+    @OneToMany(mappedBy = "factura")
     private List<Detalle> detalles;
+
+    @ManyToOne
+    @JoinColumn(name = "fact_clie_id")
+    private Cliente cliente;
 
     // Get y Set
     public Integer getId() {
@@ -65,11 +75,24 @@ public class Factura {
         this.detalles = detalles;
     }
 
-    @Override
-    public String toString() {
-        return "Factura [detalles=" + detalles + ", fecha=" + fecha + ", id=" + id + ", numero=" + numero + "]";
+   
+    public Cliente getCliente() {
+        return cliente;
     }
 
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public BigDecimal getMonto() {
+        return monto;
+    }
+
+    public void setMonto(BigDecimal monto) {
+        this.monto = monto;
+    }
+
+    
     
 
 }

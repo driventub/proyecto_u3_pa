@@ -24,11 +24,6 @@ public class DetalleServiceImpl implements IDetalleService {
         return this.detaRepo.buscar(id);
     }
 
-    @Override
-    public List<Detalle> buscarTodos() {
-
-        return this.detaRepo.buscarTodos();
-    }
 
     @Override
     public void actualizar(Detalle deta) {

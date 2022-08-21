@@ -27,11 +27,7 @@ public class FacturaServiceImpl implements IFacturaService {
 		return this.factRepo.buscar(id);
 	}
 
-	@Override
-	public List<Factura> buscarTodos() {
-		
-		return this.factRepo.buscarTodos();
-	}
+	
 
 	@Override
 	public void actualizar(Factura fact) {
@@ -51,51 +47,12 @@ public class FacturaServiceImpl implements IFacturaService {
 		
 	}
 
-    @Override
-    public List<Factura> buscarFacturaInnerJoin(LocalDateTime fecha) {
 
-        return this.factRepo.buscarFacturaInnerJoin(fecha);
-    }
 
-    @Override
-    public List<Factura> buscarFacturaOuterJoin(LocalDateTime fecha) {
+	@Override
+	public Factura buscarNumero(String numero) {
+		// TODO Auto-generated method stub
+		return this.factRepo.buscarNumero(numero);
+	}
 
-        return this.factRepo.buscarFacturaOuterJoin(fecha);
-    }
-
-    @Override
-    public List<Factura> buscarFacturaLeftOuterJoin(LocalDateTime fecha) {
-
-        return this.factRepo.buscarFacturaLeftOuterJoin(fecha);
-    }
-
-    @Override
-    public List<Factura> buscarFacturaRightOuterJoin(LocalDateTime fecha) {
-
-        return this.factRepo.buscarFacturaRightOuterJoin(fecha);
-    }
-
-    @Override
-    public List<Factura> buscarFacturaFetchJoin(LocalDateTime fecha) {
-
-        return this.factRepo.buscarFacturaFetchJoin(fecha);
-    }
-
-    @Override
-    public List<Factura> buscarFacturaInnerJoin() {
-        
-        return this.factRepo.buscarFacturaInnerJoin();
-    }
-
-    @Override
-    public List<Factura> buscarFacturaLeftOuterJoin() {
-        
-        return this.factRepo.buscarFacturaLeftOuterJoin();
-    }
-
-    @Override
-    public List<Factura> buscarFacturaWhereJoin(LocalDateTime fecha) {
-        // TODO Auto-generated method stub
-        return this.factRepo.buscarFacturaWhereJoin(fecha);
-    }
 }

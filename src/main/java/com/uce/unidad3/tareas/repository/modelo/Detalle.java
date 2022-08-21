@@ -1,6 +1,7 @@
 package com.uce.unidad3.tareas.repository.modelo;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -22,18 +24,19 @@ public class Detalle {
     @SequenceGenerator(name = "deta_id_seq", sequenceName = "deta_id_seq", allocationSize = 1)
 	private Integer id;
 
-    @Column(name = "deta_nombre")
-    private String nombre;
-
     @Column(name = "deta_cantidad")
-    private Integer cantidad;
+    private Integer cantidad ;
 
     @Column(name = "deta_subtotal")
     private BigDecimal subtotal;
 
     @ManyToOne
-    @JoinColumn(name = "deta_fact_s_id")
+    @JoinColumn(name = "deta_fact_id")
     private Factura factura;
+
+    @ManyToOne
+    @JoinColumn(name = "deta_prod_id")
+    private Producto producto;
 
     // Get y Set
 
@@ -69,20 +72,13 @@ public class Detalle {
         this.subtotal = subtotal;
     }
 
-    public String getNombre() {
-        return nombre;
+    public Producto getProducto() {
+        return producto;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setProducto(Producto producto) {
+        this.producto = producto;
     }
 
-    @Override
-    public String toString() {
-        return "Detalle [cantidad=" + cantidad  + ", nombre=" + nombre
-                + ", subtotal=" + subtotal + "]";
-    }
-
-    
 
 }
