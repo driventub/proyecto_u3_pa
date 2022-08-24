@@ -1,6 +1,7 @@
 package com.uce.unidad3;
 
-import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -9,6 +10,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.uce.unidad3.repository.modelo.Hotel;
+import com.uce.unidad3.service.IHotelService;
 import com.uce.unidad3.service.ITransferenciaService;
 import com.uce.unidad3.tareas.service.IGestorService;
 
@@ -22,6 +25,9 @@ public class Unidad3Application implements CommandLineRunner{
 
 	@Autowired
 	private ITransferenciaService transferenciaService;
+
+	@Autowired
+	private IHotelService hotelService;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(Unidad3Application.class, args);
@@ -38,8 +44,11 @@ public class Unidad3Application implements CommandLineRunner{
 
 	// this.gestorService.crearDetallesFactura("170383657-2", "2022Factura", codigos);
 	
-	this.transferenciaService.realizarTransferenciaFachada("22342", "83828", new BigDecimal("1.00"));
+	// this.transferenciaService.realizarTransferenciaFachada("22342", "83828", new BigDecimal("1.00"));
+	
 
+	List<Hotel> lista1 = this.hotelService.buscarHotelInnerJoin("Familiar");
+		lista1.forEach(hotel -> LOG.info(hotel.getNombre()));
 	}
 
 }
