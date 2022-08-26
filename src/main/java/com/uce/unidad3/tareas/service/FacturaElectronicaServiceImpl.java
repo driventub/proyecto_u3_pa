@@ -22,6 +22,7 @@ public class FacturaElectronicaServiceImpl implements IFacturaElectronicaService
     // Como tabla independiente significa que es una entidad sin un relacionamiento
     // y no simplemente un DTO
     // por tanto se inserta como tal
+    
     @Override
     @Transactional(value = TxType.REQUIRES_NEW)
     public void crearFacturaElectronica(String numeroFact, BigDecimal monto, Integer items) {

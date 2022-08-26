@@ -25,7 +25,6 @@ public class DetalleRepoImpl implements IDetalleRepo{
 	private EntityManager e;
 	
 	@Override
-	@Transactional(value = TxType.NOT_SUPPORTED)
 	public Detalle buscar(Integer id) {
 		return this.e.find(Detalle.class, id);
 	}
@@ -44,7 +43,6 @@ public class DetalleRepoImpl implements IDetalleRepo{
 		
 	}
 
-	@Override
 	public void insertar(Detalle deta) {
 		this.e.persist(deta);
 		

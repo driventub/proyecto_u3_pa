@@ -23,7 +23,6 @@ public class FacturaRepoImpl implements IFacturaRepo {
 	private EntityManager e;
 
 	@Override
-	@Transactional(value = TxType.NOT_SUPPORTED)
 	public Factura buscar(Integer id) {
 		return this.e.find(Factura.class, id);
 	}

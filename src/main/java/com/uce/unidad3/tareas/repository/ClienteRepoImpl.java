@@ -22,7 +22,6 @@ public class ClienteRepoImpl implements IClienteRepo {
     private EntityManager e;
 
     @Override
-    @Transactional(value = TxType.NOT_SUPPORTED)
     public Cliente buscar(Integer id) {
         return this.e.find(Cliente.class, id);
     }
@@ -47,7 +46,7 @@ public class ClienteRepoImpl implements IClienteRepo {
     }
 
     @Override
-    @Transactional(value = TxType.NOT_SUPPORTED)
+
     public Cliente buscarCedula(String cedula) {
         TypedQuery<Cliente> myTypedQuery = this.e
                 .createQuery("SELECT c FROM Cliente c  WHERE c.cedula = :cedula  ", Cliente.class)

@@ -23,7 +23,7 @@ public class ProductoRepoImpl implements IProductoRepo{
 	private EntityManager e;
 	
 	@Override
-	@Transactional(value = TxType.NOT_SUPPORTED)
+
 	public Producto buscar(Integer id) {
 		return this.e.find(Producto.class, id);
 	}
