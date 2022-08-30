@@ -72,7 +72,7 @@ public class HotelRepoImpl implements IHotelRepo {
     }
 
     @Override
-    public List<Hotel> buscarHotelLeftOuterJoin() {
+    public List<Hotel> buscarHotelLeftOuterJoin() { 
         TypedQuery<Hotel> mQuery = this.e
                 .createQuery("SELECT h FROM Hotel h LEFT JOIN h.habitaciones ha", Hotel.class);
 

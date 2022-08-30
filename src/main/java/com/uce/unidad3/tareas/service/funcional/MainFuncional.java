@@ -2,6 +2,9 @@ package com.uce.unidad3.tareas.service.funcional;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Stream;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -106,5 +109,6 @@ public class MainFuncional {
         LOG.info(unaryOperatorLambda.fecha(LocalDateTime.now()));
         // High Order
         metodos.unaryOperator(unaryOperatorLambda, 2033, 12, 13);
+
     }
 }
