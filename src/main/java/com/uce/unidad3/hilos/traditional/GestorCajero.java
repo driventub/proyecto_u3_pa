@@ -8,10 +8,12 @@ public class GestorCajero {
     private static Logger LOG = LogManager.getLogger(GestorCajero.class);    
     
     public void procesar(Cajero cajero){
+        LOG.info("Nombre Hilo procesar: " + Thread.currentThread().getName());
         LOG.info("Procesando cajero : " + cajero.getNombre());
         for (String  cliente : cajero.getClientes()) {
             atenderCliente(cliente);
         }
+        
     }
 
     private void atenderCliente(String cliente) {

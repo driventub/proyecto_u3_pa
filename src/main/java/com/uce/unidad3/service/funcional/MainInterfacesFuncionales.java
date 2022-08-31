@@ -14,7 +14,7 @@ public class MainInterfacesFuncionales {
     
     public static final Logger LOG = LogManager.getLogger(MainInterfacesFuncionales.class);
 
-    public static boolean prueba (Integer i){
+    public static boolean prueba (Integer i){   
         return i >= 3;
     }
 
