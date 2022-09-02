@@ -1,114 +1,85 @@
 package com.uce.unidad3.tareas.service.funcional;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Stream;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.uce.unidad3.tareas.repository.modelo.Datos;
+
 public class MainFuncional {
 
     private static Logger LOG = LogManager.getLogger(MainFuncional.class);
     public static void main(String[] args) {
+
+        List<Datos> lista = new ArrayList<>();
+        Datos d1 = new Datos();
+        d1.setItems(32);
+        d1.setMonto(new BigDecimal("2.2"));
+        
+        Datos d2 = new Datos();
+        d2.setItems(20);
+        d2.setMonto(new BigDecimal("1.0"));
+        
+        Datos d3 = new Datos();
+        d3.setItems(25);
+        d3.setMonto(new BigDecimal("1.3"));
+        
+        lista.add(d1);
+        lista.add(d2);
+        lista.add(d3);
+        
+         // SUPPLIER
         
         
-        MetodosHighOrder metodos = new MetodosHighOrder();
+
+        LOG.info("JAVA Supplier");
+        Stream<List<Datos>> test = Stream.generate(() -> lista).limit(3).skip(1);
+        test.forEach(cadena -> {
+            
+            LOG.info(cadena);
         
-        // Supplier
-        // Interfaz
+        });
 
-        LOG.info("------------------------------------------------");
-        LOG.info("Supplier");
-        LOG.info("------------------------------------------------");
-        IExamenSupplier<BigDecimal> examenSupplier = new ExamenSupplierImpl();
-        LOG.info(examenSupplier.get());
+        // CONSUMER
+        
+       
 
-        // Lambda
-        IExamenSupplier<BigDecimal> examenSupplierLambda = () -> new BigDecimal("33.33");
-        LOG.info(examenSupplierLambda.get());
+        LOG.info("JAVA Consumer");
+        lista.forEach(dato -> {
+            LOG.info("Dato original " + dato.toString());
+            dato.setNumeroFactura(" 11A");
+            LOG.info("Dato modificado " + dato.toString());
+        });
+        
+        
 
-        // High Order
 
-        LOG.info("El valor es: " + metodos.supplier(examenSupplierLambda, 3));
-
-        // Consumer
-        LOG.info("------------------------------------------------");
-        LOG.info("Consumer");
-        LOG.info("------------------------------------------------");
-        // Interfaz
-
-        IExamenConsumer<BigDecimal> examenConsumer = new ExamenConsumerImpl();
-        examenConsumer.accept(new BigDecimal("50"));
-
-        // Lambda
-        IExamenConsumer<BigDecimal> examenConsumerLambda = arg1 -> LOG.info(arg1 + "\t es de tipo " + arg1.getClass());
-        examenConsumerLambda.accept(new BigDecimal("50"));
-
-        // High Order
-
-        metodos.consumer(examenConsumer, 3);
 
         // Predicate
-        LOG.info("------------------------------------------------");
-        LOG.info("Predicate");
-        LOG.info("------------------------------------------------");
-        // Interfaz
+        
 
-        IExamenPredicate<BigDecimal> predicate = new ExamenPredicateImpl();
-        LOG.info(predicate.evaluar(new BigDecimal("8.1")));
-        // Lambda
-        IExamenPredicate<BigDecimal> predicateLambda = arg1 -> {
-            Double valor = arg1.doubleValue();
-            Boolean cond = false;
-
-            if (valor == 2) {
-                cond = true;
-            }
-
-            return cond;
-        };
-        LOG.info(predicateLambda.evaluar(new BigDecimal("8.1")));
-
-        // High Order
-        LOG.info(metodos.predicate(predicate, "388"));
-
-        // Function
-        LOG.info("------------------------------------------------");
-        LOG.info("Function");
-        LOG.info("------------------------------------------------");
-        // Interfaz
-
-        IExamenFunction<Integer,Boolean> function = new ExamenFunctionImpl();
-        LOG.info(function.aplicar(true));
-        // Lambda
-        IExamenFunction<Integer,Boolean> functionLambda = arg1 -> {
-            Integer valor ;
-        if (arg1 == true ) {
-            valor = 2;
-        }else{  
-            valor = 3;
-        }
-        return valor;
-        };
-        LOG.info(functionLambda.aplicar(true));
-        // High Order
-        LOG.info("Fecha : " + metodos.function(functionLambda, "texto"));
+        LOG.info("JAVA Predicate");
+        
+        Stream<Datos> nuevaLista =  lista.stream().takeWhile(valor -> valor.getMonto().compareTo(new BigDecimal("2") ) > 0);
+        nuevaLista.forEach(d -> LOG.info(d.toString()));
        
-        // Unary
-        LOG.info("------------------------------------------------");
-        LOG.info("Unary");
-        LOG.info("------------------------------------------------");
-        // Interfaz
-        IExamenUnaryOperator<LocalDateTime> examenUnaryOperator = new ExamenUnaryOperatorImpl();
-        LOG.info(examenUnaryOperator.fecha(LocalDateTime.now()));
-        // Lambda
-        IExamenUnaryOperator<LocalDateTime> unaryOperatorLambda =  arg1 -> arg1.minusYears(50);
-        LOG.info(unaryOperatorLambda.fecha(LocalDateTime.now()));
-        // High Order
-        metodos.unaryOperator(unaryOperatorLambda, 2033, 12, 13);
+
+
+        // // FUNCTION
+        Set<Datos> set = new HashSet<>(lista);
+        
+        LOG.info("JAVA Function");
+        Long contar = set.stream().map(dato -> dato.getItems()).filter(items -> items > 20).count();
+        LOG.info("Datos con items mayores a 20: " + contar);
+        
+
+
 
     }
 }

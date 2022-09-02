@@ -24,6 +24,11 @@ public class Datos {
     public void setItems(Integer items) {
         this.items = items;
     }
+    @Override
+    public String toString() {
+        return "Datos [items=" + items + ", monto=" + monto + ", numeroFactura=" + numeroFactura + "]";
+    }
 
+    
     
 }
